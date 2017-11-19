@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+/*Напишите программу заполняющую квадратный двумерный массив, как показано в примере.
+На главной диагонали стоят нули, а на остальных - удаление от главной диагонали.*/
+
+int dig_Trench(){
+int n;
+cout<< "Enter the number of columns and lines of array  ";
+cin>>n;
+int Trench [n][n];
+     int s=0;
+    for (int i = 0; i<n; i++){
+    for (int j = i; j < n; j++){
+        Trench[i][j] = s++;
+        }
+        s=0;
+        }
+   int d=n-1;
+    for (int i = n-1; i>0; i--){
+    for (int j = 0; j<i; j++){
+        Trench[i][j] = d--;
+    }
+    d=i-1;
+
+    }
+     cout<<"Array:  "<< endl;
+         for (int i = 0; i < n; i++){
+            cout<<endl<<endl;
+             for (int j = 0; j < n; j++){
+                   cout << Trench[i][j] << " ";
+             }
+         }
+}
+int main(){
+dig_Trench();
+return 0;
+}
