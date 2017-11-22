@@ -1,58 +1,60 @@
-
-
 #include <iostream>
 #include <cmath>
 using namespace std;
-int main()
-{
-int n,p;
 
-cout<<"Enter n= ";
-cin>>n;
-
+int print_palindrom (int n){
+if(n==1)
+cout<<9<<" is palindrom multiple of 9";
+else{
+int p,sum;
 p=pow(10,n)-pow(10,n-1);
 int **a=new int*[p];
 int num=pow(10,n-1);
-for (int i=0;i<p;i++){
+sum=num;
+while (sum%9!=0){
+sum=sum+1;
+}
+for (int i=0;i<p/9;i++){
 a[i]=new int [n];
-num=pow(10,n-1)+i;
+sum=sum+9;
 for (int j=0;j<n;j++){
-a[i][j]=(num%(int)(pow((float)10,(j+1))))/pow((float)10,j);
+a[i][j]=(sum%(int)(pow((float)10,(j+1))))/pow((float)10,j);
 }
 }
 
-int s,k,h,c;
-int sum[p];
-int u[p];
+int d,l;
+int k,h,c;
+d=p/9;
+int u[d];
 k=n/2;
-int j=0;int l;
-for (int i=0;i<p;i++){
-        c=0;h=n-1;
+for (int i=0;i<p/9;i++){
+        u[i]=0;
+h=n-1;
         for (int j=0;j<k;j++){
-h=h-j;
-if (a[i][j]==a[i][h]) u[i]=c+1;
-else u[i]=c;
-
+if (a[i][j]==a[i][h]) {u[i]=u[i]+1;}
+else {u[i]=0;continue;}
+h=h-1;
 }
 }
-for (int i=0;i<p;i++){
-    s=0;
+for (int i=0;i<p/9;i++){
         for (int j=0;j<n;j++){
-                s=s+a[i][j];
-        if (s%9==0) sum[i]=1;
-        else sum[i]=0;
-        }
-}
-for (int i=0;i<p;i++){
-        for (int j=0;j<n;j++){
-                if (u[i]==k&&sum[i]==1) cout<<a[i][j];
-}
-if (u[i]==k&&sum[i]==1) cout<<"  is palindrom multiple of 9"<<endl;
+if (k==u[i]) cout<<a[i][j];}
+if (u[i]==k) cout<<"  is palindrom multiple of 9"<<endl;
 }
 for (int i = 0; i < p; i++)
 {
   delete [] a[i];
 }
+
 delete [] a;
+}
+}
+
+
+int main(){
+int n;
+cout<<"Enter n= ";
+cin>>n;
+print_palindrom(n);
 return 0;
 }
