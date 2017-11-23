@@ -1,0 +1,112 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+struct credit{
+    char name[30];
+    char surname[30];
+    char patronymic[30];
+    char TPI[30];
+    short int day;
+    short int month;
+    short int year;
+    double perc;
+    long double amount;
+    double montham;
+}creditor;
+
+float date(int m,double amount, int montham){
+double per;
+double sum;
+double ost;
+long double debt=0;
+long double osn= ceil(amount/montham);
+sum=osn*m;
+return sum;
+}
+
+float every (double amount, int montham){
+double ez;
+ez=ceil(amount/montham);
+return ez;
+}
+
+float overpayments(long double amount, int montham,int m){
+double per;
+double per1;
+long double debt=0;
+long double debt1=0;
+long double amount1=amount;
+long double osn= ceil(amount/montham);
+for (int i=1;i<=montham;i++){
+amount=amount-osn;
+per=amount*0.02;
+debt=debt+per;
+}
+for (int i=1;i<=m;i++){
+amount1=amount1-osn;
+per1=amount1*0.02;
+debt1=debt1+per1;
+}
+int over=debt-debt1;
+return ceil(over);
+}
+
+float perc(double amount, int montham,int m){
+double per;
+long double osn= ceil (amount/montham);
+for (int i=1;i<=m;i++){
+amount=amount-osn;
+per=amount*0.02;
+}
+return ceil(per);
+}
+
+
+float debt(double amount, int montham){
+double per;
+long double debt=0;
+double sum=0;
+long double osn= ceil(amount/montham);
+for (int i=1;i<=montham;i++){
+amount=amount-osn;
+per=amount*0.02;
+debt=debt+per;
+}
+return ceil(debt);
+}
+
+
+int main(){
+int n,m;
+cout<<"Enter the date of credit  "<<endl;
+cout<<endl<<"Name:  ";
+cin >> creditor.name;
+cout<<endl<<"Surname:  ";
+cin>>creditor.surname;
+cout<<endl<<"Patronymic:  ";
+cin>>creditor.patronymic;
+cout<<endl<<"TPI (12):  ";
+cin>>creditor.TPI;
+cout<<endl<<"Enter the credit date (day,month,year):  ";
+cin>>creditor.day>>creditor.month>>creditor.year;
+cout<<endl<<"Enter the amount of credit:  ";
+cin>>creditor.amount;
+cout<<endl<<"Enter credit term (in month):  ";
+cin>>creditor.montham;
+cout<<endl<<"Percent=2%"
+cout<<endl<<"Every month you must pay: "<< every(creditor.amount,creditor.montham)<<endl;
+cout<<endl<<"The main debt= "<< debt(creditor.amount,creditor.montham)<<endl;
+cout<<endl<<"Do you want to repay the loan immediately? (if 'yes' enter 1, if 'no' enter 0)";
+for (int m=1;m<=creditor.montham;m++){
+cin>>n;
+if (n==0) cout<<endl<<"  Month "<<m<<"  Payment "<<every(creditor.amount,creditor.montham)<<"  Sum at the moment "<<date(m,creditor.amount,creditor.montham)<<"  Remainder "<<creditor.amount-date(m,creditor.amount,creditor.montham)<<"  Percent "<<perc(creditor.amount,creditor.montham, m)<<endl;
+else{
+cout<<endl<<"Early repayment of a loan:  "<<endl;
+cout<<endl<<"  Month "<<m<<"  Payment "<<creditor.amount-every(creditor.amount,creditor.montham)*(m-1)<<"  Sum at the moment "<<creditor.amount+overpayments(creditor.amount,creditor.montham,m)<<"  Remainder "<<'0'<<endl;
+cout<<endl<<"Overpayments: "<<overpayments(creditor.amount,creditor.montham,m)<<endl;
+continue;
+}
+}
+cout<<endl<<"Service completed"<<endl;
+return 0;
+}
