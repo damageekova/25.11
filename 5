@@ -93,7 +93,7 @@ cout<<endl<<"Enter the amount of credit:  ";
 cin>>creditor.amount;
 cout<<endl<<"Enter credit term (in month):  ";
 cin>>creditor.montham;
-cout<<endl<<"Percent=2%"
+cout<<endl<<"Percent=2%"<<endl;
 cout<<endl<<"Every month you must pay: "<< every(creditor.amount,creditor.montham)<<endl;
 cout<<endl<<"The main debt= "<< debt(creditor.amount,creditor.montham)<<endl;
 cout<<endl<<"Do you want to repay the loan immediately? (if 'yes' enter 1, if 'no' enter 0)";
@@ -102,7 +102,7 @@ cin>>n;
 if (n==0) cout<<endl<<"  Month "<<m<<"  Payment "<<every(creditor.amount,creditor.montham)<<"  Sum at the moment "<<date(m,creditor.amount,creditor.montham)<<"  Remainder "<<creditor.amount-date(m,creditor.amount,creditor.montham)<<"  Percent "<<perc(creditor.amount,creditor.montham, m)<<endl;
 else{
 cout<<endl<<"Early repayment of a loan:  "<<endl;
-cout<<endl<<"  Month "<<m<<"  Payment "<<creditor.amount-every(creditor.amount,creditor.montham)*(m-1)<<"  Sum at the moment "<<creditor.amount+overpayments(creditor.amount,creditor.montham,m)<<"  Remainder "<<'0'<<endl;
+cout<<endl<<"  Month "<<m<<"  Payment "<<creditor.amount-every(creditor.amount,creditor.montham)*(m-1)+overpayments(creditor.amount,creditor.montham,m)<<"  Sum at the moment "<<creditor.amount+overpayments(creditor.amount,creditor.montham,m)<<"  Remainder "<<'0'<<endl;
 cout<<endl<<"Overpayments: "<<overpayments(creditor.amount,creditor.montham,m)<<endl;
 continue;
 }
