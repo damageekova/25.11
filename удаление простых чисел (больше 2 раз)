@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+/*Напишите программу, которая удаляет из массива все простые числа встречающиеся больше одного раза.*/
 
 void* delete_annoying_primes (int* a,int n){
 int p[n];
